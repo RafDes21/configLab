@@ -28,38 +28,44 @@ implementation("com.google.firebase:firebase-messaging-ktx:24.1.0")
 }
 
 6. Agregar en el manifest
-   <manifest>
+```xml
+<manifest>
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+ <uses-permission android:name="android.permission.INTERNET"/>
+ <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
 
-   <application>
-     .....
+ <application>
+     <!-- Configuración del servicio -->
      <service
          android:name=".java.MyFirebaseMessagingService"
          android:exported="false">
-        <intent-filter>
-          <action android:name="com.google.firebase.MESSAGING_EVENT" />
-        </intent-filter>
+         <intent-filter>
+             <action android:name="com.google.firebase.MESSAGING_EVENT" />
+         </intent-filter>
      </service>
-   <meta-data
-   android:name="com.google.firebase.messaging.default_notification_icon"
-   android:resource="@drawable/icono" />
-   <meta-data
-   android:name="com.google.firebase.messaging.default_notification_channel_id"
-   android:value="@string/default_notification_channel_id" />
-   <meta-data
-   android:name="com.google.firebase.messaging.default_notification_color"
-   android:resource="@color/transparent" />
-   </application>
-   <meta-data
-    android:name="firebase_messaging_auto_init_enabled"
-    android:value="false" />
 
-<meta-data
-android:name="firebase_analytics_collection_enabled"
-android:value="false" />
-</manifest>
+     <!-- Metadatos de configuración -->
+     <meta-data
+         android:name="com.google.firebase.messaging.default_notification_icon"
+         android:resource="@drawable/icono" />
+     <meta-data
+         android:name="com.google.firebase.messaging.default_notification_channel_id"
+         android:value="@string/default_notification_channel_id" />
+     <meta-data
+         android:name="com.google.firebase.messaging.default_notification_color"
+         android:resource="@color/transparent" />
+ </application>
+
+ <!-- Opciones avanzadas -->
+ <meta-data
+     android:name="firebase_messaging_auto_init_enabled"
+     android:value="false" />
+ <meta-data
+     android:name="firebase_analytics_collection_enabled"
+     android:value="false" />
+</manifest> 
+```
+
 
 7. creamos un canal en un
    string  <string name="default_notification_channel_id" translatable="false">
